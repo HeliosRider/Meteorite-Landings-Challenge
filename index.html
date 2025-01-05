@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sightings Over the Years - Meteorite Landings API</title>
+
+    <!-- Include D3.js -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+
+    <style>
+        /* Styling for the Hero Section */
+        .hero-section {
+            background-image: url('https://us.123rf.com/450wm/simonbear/simonbear2304/simonbear230400690/201989816-beautiful-meteor-shower-in-the-night-sky.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 40vh;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        /* General Body Styling */
+        body {
+            background-color: #121212;
+            color: white;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Section Spacing */
+        .section {
+            padding: 30px 20px;
+            margin-bottom: 30px;
+        }
+
+        /* Styling for the Image Section */
+        .lat-lon-images {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .lat-lon-images img {
+            width: 45%;
+            margin: 10px;
+            border-radius: 8px;
+        }
+
+        .lat-lon-images h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        /* Dividers (horizontal rule) */
+        hr {
+            border: 1px solid #333;
+            margin: 30px 0;
+        }
+
+        /* Layout for the Content Container */
+        .content-wrapper {
+            display: flex;
+            justify-content: space-between;
+            gap: 30px;
+        }
+
+        .trend-description, .chart-container {
+            width: 48%;
+        }
+
+        .trend-description {
+            padding: 20px;
+            background-color: #1e1e1e;
+            border-radius: 8px;
+        }
+
+        .trend-description h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+        }
+
+        .trend-description p {
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        .filters {
+            margin-bottom: 20px;
+        }
+
+        .filters select {
+            margin-right: 10px;
+        }
+
+        /* Styling for the API Links Section */
+        .api-links {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .api-links ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .api-links ul li {
+            margin-bottom: 10px;
+        }
+
+        .api-links a {
+            color: #7a7a7a;
+            text-decoration: none;
+        }
+
+        .api-links a:hover {
+            color: #fff;
+        }
+
+        /* Styling for the Sightings Chart Section */
+        .chart-container {
+            margin-top: 20px;
+        }
+
+        svg {
+            width: 100%;
+            height: 400px;
+        }
+
+        .axis path,
+        .axis line {
+            fill: none;
+            shape-rendering: crispEdges;
+        }
+
+        .axis text {
+            font-size: 12px;
+        }
+
+        .line {
+            fill: none;
+            stroke: steelblue;
+            stroke-width: 2;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Hero Section with Image -->
+    <div class="hero-section">
+        <h1>Welcome to the Meteorite Landings API</h1>
+    </div>
+
+    <!-- Introduction Section -->
+    <div class="section container intro-section">
+        <h2>Introduction</h2>
+        <p>This project visualizes meteorite landings around the world using data obtained from NASA's Meteorite Landings dataset. The data is used to generate multiple visualizations, including line charts tracking meteorite sightings over the years. The visualizations are served through a Flask-based API.</p>
+    </div>
+
+    <!-- Longitude and Latitude Image Section -->
+    <div class="section lat-lon-images">
+        <h3>Longitude and Latitude by Year</h3>
+        <div>
+            <!-- Image 1: Longitude -->
+            <img src="Static/images/Image1.png" alt="Longitude by Year">
+            <!-- Image 2: Latitude -->
+            <img src="Static/images/Image2.png" alt="Latitude by Year">
+        </div>
+        <p>In the historical context, meteorite sightings were sparse, but they became increasingly concentrated in specific regions over time, particularly in the 19th and 20th centuries, which is evident in the longitude and latitude maps above. This trend has likely been influenced by both advancements in technology for observing meteorites and changes in reporting practices.</p>
+    </div>
+
+    <!-- Divider -->
+    <hr>
+
+    <!-- Content Container (Trend and Chart Sections) -->
+    <div class="container content-wrapper">
+        <!-- Trend Description Section for Meteorite Sightings -->
+        <div class="trend-description">
+            <h3>Meteorite Sightings Trend (2019-2022)</h3>
+            <p>Over the past few years (2019-2022), meteorite sightings have shown a general increase, with a noticeable uptick in sightings in 2020 and 2021. This surge can be attributed to both better observational tools, as well as a rise in citizen science and increased public interest in space exploration and meteor showers.</p>
+            <p>Some of the key factors influencing these trends include:</p>
+            <ul>
+                <li>Improvement in satellite and telescope technology, enabling more frequent and accurate reporting.</li>
+                <li>Increased public awareness due to media coverage of meteor showers and space exploration missions.</li>
+                <li>More contributions from amateur astronomers and citizen scientists worldwide.</li>
+            </ul>
+        </div>
+
+        <!-- Sightings Chart Section -->
+        <div class="chart-container">
+            <h2>Sightings Over the Years</h2>
+
+            <!-- Dropdown for Selecting Year -->
+            <div class="filters">
+                <label for="yearSelect">Select Year: </label>
+                <select id="yearSelect">
+                    <!-- Year options will be populated by JS -->
+                </select>
+            </div>
+
+            <!-- Year Description Section -->
+            <div id="year-description"></div>
+
+            <!-- Chart Container -->
+            <div id="chart"></div>
+        </div>
+    </div>
+
+    <!-- Divider -->
+    <hr>
+
+    <!-- API Links Section -->
+    <div class="api-links">
+        <p>API Endpoints:</p>
+        <ul>
+            <li><a href="/api/v1.0/Name">/api/v1.0/name</a></li>
+            <li><a href="/api/v1.0/Mass(g)">/api/v1.0/mass(g)</a></li>
+            <li><a href="/api/v1.0/Year">/api/v1.0/year</a></li>
+            <li><a href="/api/v1.0/GeoLocation">/api/v1.0/GeoLocation</a></li>
+        </ul>
+    </div>
+
+    <!-- Include external JavaScript -->
+    <script src="script.js"></script>
+
+</body>
+
+</html>
+
+   
