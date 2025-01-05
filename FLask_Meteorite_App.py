@@ -22,6 +22,21 @@ def home():
     return ("""
 <h1>Welcome to the Meteorite Landings Application API!</h1>
 <img src="https://img.freepik.com/free-photo/milky-way-illum…d-generated-by-ai_24640-93529.jpg?semt=ais_hybrid?" alt="Meteorite Landings"/>
+</style>	
+		
+		<div id="map-locator-filter"> 
+			<form id="form-map-locator" action="" name="form-map-locator" method="post" >
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-12">
+						<div class="row" style="background-color: tan;padding: 20px 5px 5px 5px;">
+							<div class="col-xs-12">
+								<div class="col-sm-3">
+									<div class="mb">
+										<div class="icon"><img src="https://impact.uwo.ca/wp-content/plugins/map-locator//images/hypervelocity.png"></div>
+										<div  class="txt">Meterorite Shower</div>
+										<div style="clear:both;"></div>
+									
+
 <h2>Available API's</h2>
             
 <p>Meteorite-Landings:</p>
