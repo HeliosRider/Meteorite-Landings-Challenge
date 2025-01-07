@@ -68,7 +68,8 @@
             gap: 30px;
         }
 
-        .trend-description, .chart-container {
+        .trend-description,
+        .chart-container {
             width: 48%;
         }
 
@@ -96,30 +97,6 @@
             margin-right: 10px;
         }
 
-        /* Styling for the API Links Section */
-        .api-links {
-            margin-top: 30px;
-            text-align: center;
-        }
-
-        .api-links ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        .api-links ul li {
-            margin-bottom: 10px;
-        }
-
-        .api-links a {
-            color: #7a7a7a;
-            text-decoration: none;
-        }
-
-        .api-links a:hover {
-            color: #fff;
-        }
-
         /* Styling for the Sightings Chart Section */
         .chart-container {
             margin-top: 20px;
@@ -145,6 +122,54 @@
             stroke: steelblue;
             stroke-width: 2;
         }
+
+        /* Styling for the Landing Map Section */
+        #map {
+            height: 400px;
+            width: 100%;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        /* Styling for the API Links Section */
+        .api-links {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .api-links ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .api-links ul li {
+            margin-bottom: 10px;
+        }
+
+        .api-links a {
+            color: #7a7a7a;
+            text-decoration: none;
+        }
+
+        .api-links a:hover {
+            color: #fff;
+        }
+
+        /* New style for the Landing Map Title */
+        #landing-map-section h3 {
+            font-size: 2.5rem; /* Increased font size */
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        /* New style for the paragraph under the map title */
+        #landing-map-section p {
+            font-size: 1.2rem; /* Increased font size */
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto; /* Center the paragraph */
+            line-height: 1.6;
+        }
     </style>
 </head>
 
@@ -152,7 +177,7 @@
 
     <!-- Hero Section with Image -->
     <div class="hero-section">
-        <h1>Welcome to the Meteorite Landings API</h1>
+        <h1 style="font-size: 3rem;">Welcome to the Meteorite Landings API</h1> <!-- Title kept as is -->
     </div>
 
     <!-- Introduction Section -->
@@ -180,55 +205,54 @@
     <div class="container content-wrapper">
         <!-- Trend Description Section for Meteorite Sightings -->
         <div class="trend-description">
-            <h3>Meteorite Sightings Trend (2019-2022)</h3>
-            <p>Over the past few years (2019-2022), meteorite sightings have shown a general increase, with a noticeable uptick in sightings in 2020 and 2021. This surge can be attributed to both better observational tools, as well as a rise in citizen science and increased public interest in space exploration and meteor showers.</p>
-            <p>Some of the key factors influencing these trends include:</p>
+            <h3>Meteorite Sightings Trend (1900-2021)</h3>
+            <p>Over the course of the 20th and 21st centuries, meteorite sightings and landings have become more frequent. This period (1900–2021) shows clear patterns in meteorite landings, with an increase in the number of recorded meteorites due to improved observational tools and more comprehensive global reporting.</p>
+            <p>The heatmap below illustrates the distribution of meteorite landings by year group and meteorite class. Some key points include:</p>
             <ul>
-                <li>Improvement in satellite and telescope technology, enabling more frequent and accurate reporting.</li>
-                <li>Increased public awareness due to media coverage of meteor showers and space exploration missions.</li>
-                <li>More contributions from amateur astronomers and citizen scientists worldwide.</li>
+                <li>There was a significant increase in meteorite observations and landings after the 1960s due to advancements in satellite and telescope technology.</li>
+                <li>The meteorite classes that dominate the dataset are typically stony meteorites, such as the L6 and H5 types, which are composed of silicate minerals.</li>
+                <li>In the more recent decades (2000-2021), meteorite sightings have spiked, likely due to the increase in citizen science efforts, media coverage of meteor showers, and more widespread use of technology to detect meteorite events.</li>
             </ul>
         </div>
 
         <!-- Sightings Chart Section -->
         <div class="chart-container">
-            <h2>Sightings Over the Years</h2>
+            <h2>Meteorite Landings Heatmap (1900-2021)</h2>
 
-            <!-- Dropdown for Selecting Year -->
+            <!-- Heatmap Image Container -->
             <div class="filters">
-                <label for="yearSelect">Select Year: </label>
-                <select id="yearSelect">
-                    <!-- Year options will be populated by JS -->
-                </select>
+                <img src="Static/images/meteorite_landings_heatmap_cleaned.png" alt="Heatmap of Meteorite Landings from 1900-2021" style="width: 100%; max-width: 850px;"> <!-- Increased max-width for larger image -->
             </div>
-
-            <!-- Year Description Section -->
-            <div id="year-description"></div>
-
-            <!-- Chart Container -->
-            <div id="chart"></div>
         </div>
     </div>
 
     <!-- Divider -->
     <hr>
 
-    <!-- API Links Section -->
+    <!-- Landing Map Section -->
+    <div class="section" id="landing-map-section">
+        <h3>Global Meteorite Landings Map</h3>
+        <p>This map shows the geographical distribution of meteorite landings around the world.</p>
+
+        <!-- Map Container -->
+        <div id="map"></div>
+
+        <!-- Include external script for the map -->
+        <script type="text/javascript" src="static/js/landing_map.js"></script>
+    </div>
+
+    <!-- API Links Section (Moved to the bottom) -->
     <div class="api-links">
         <p>API Endpoints:</p>
         <ul>
-            <li><a href="/api/v1.0/Name">/api/v1.0/name</a></li>
-            <li><a href="/api/v1.0/Mass(g)">/api/v1.0/mass(g)</a></li>
-            <li><a href="/api/v1.0/Year">/api/v1.0/year</a></li>
-            <li><a href="/api/v1.0/GeoLocation">/api/v1.0/GeoLocation</a></li>
+            <li><a href="/api/v1.0/meteorite-landings">/api/v1.0/meteorite-landings</a></li>
+            <li><a href="/api/v1.0/meteorite-landings/first-rec">/api/v1.0/meteorite-landings/first-rec</a></li>
+            <li><a href="/api/v1.0/meteorite-landings/unique-years">/api/v1.0/meteorite-landings/unique-years</a></li>
+            <li><a href="/api/v1.0/meteorite-landings/count-all-years">/api/v1.0/meteorite-landings/count-all-years</a></li>
+            <li><a href="/api/v1.0/meteorite-landings/max-year-count">/api/v1.0/meteorite-landings/max-year-count</a></li>
         </ul>
     </div>
-
-    <!-- Include external JavaScript -->
-    <script src="script.js"></script>
 
 </body>
 
 </html>
-
-   
