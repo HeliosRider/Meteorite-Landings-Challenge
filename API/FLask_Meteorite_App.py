@@ -3,6 +3,8 @@ from flask_cors import CORS
 from pprint import pprint
 import pymongo
 from bson.json_util import dumps
+from bson import json_util
+import json
 from flask import Flask, jsonify, Response
 
 myclient = pymongo.MongoClient("mongodb://localhost:27017/")
@@ -64,21 +66,19 @@ def home():
 <ul>
   <li><a href="/api/v1.0/meteorite-landings/max-year-count">/api/v1.0/meteorite-landings/max-year-count</a></li>
 </ul>
-</html>
             
 <p>Specific Meteor Name:</p> 
-            <ul>
-            <li>/api/v1.0/meteorite-landings/<name>
-            </ul>
+<ul>
+  <li><a href="/api/v1.0/meteorite-landings/name/<name>">/api/v1.0/meteorite-landings/name/<name></a></li>
+</ul>
             
 <p>Specific Landing Year:</p> 
-            <ul>
-            <li>/api/v1.0/meteorite-landings/year/<int:year>
+<ul>
+  <li><a href="/api/v1.0/meteorite-landings/year/<int:year>">/api/v1.0/meteorite-landings/year/<int:year></a></li>
+</ul>
+</html>
 """)
-#<p>Meteor-Name:</p>
-#<ul>
-  #<li><a href="/api/v1.0/meteorite-landings/<meteor_name>">/api/v1.0/meteorite-landings/<meteor_name></a></li>
-#</ul>
+
 # Select all landings
 @app.route("/api/v1.0/meteorite-landings")
 def all_rec():
@@ -88,7 +88,7 @@ def all_rec():
     return dumps(result), 200, {'Content-Type': 'application/json'}
 
 # Define when user select particular document based on name
-@app.route("/api/v1.0/meteorite-landings/<name>")
+@app.route("/api/v1.0/meteorite-landings/name/<name>")
 def search_by_name(name):
   
         query = {'name': name}
@@ -139,15 +139,28 @@ def count_meteorites_by_year():
 # Define when user select particular document based on year
 @app.route("/api/v1.0/meteorite-landings/year/<int:year>")
 def search_by_year(year):
-    # Query MongoDB for the given year
-    query = {'year': year}
-    results = landings.find(query)
-    # Return the results as JSON
-    return Response(
-        dumps(results),
-        status=200,
-        mimetype='application/json'
-    ) 
+    try:
+        # Query MongoDB for the given year
+        query = {'year': year}
+        results = landings.find(query)
+        
+        # Convert the results to a list of dictionaries
+        results_list = list(results)
+        
+        if not results_list:
+            return jsonify({"message": "No meteorite landings found for this year."}), 404
+        
+        # Return the results as JSON with json_util to handle MongoDB-specific types
+        return Response(
+            json.dumps(results_list, default=json_util.default), status=200, mimetype='application/json'
+        )
+    
+    except ValueError:
+        # In case the year is not a valid integer
+        return jsonify({"message": "Invalid year format."}), 400
+    except Exception as e:
+        # General error handling
+        return jsonify({"message": str(e)}), 500
 
 @app.route("/api/v1.0/meteorite-landings/max-year-count")
 def max_meteorites_by_year():

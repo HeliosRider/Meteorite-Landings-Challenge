@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sightings Over the Years - Meteorite Landings API</title>
+
+    <!-- Include D3.js -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="static/css/style.css">
+    
+
+     <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+  crossorigin="" />
+
+<!-- Leaflet JavaScript code -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+  integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+  crossorigin=""></script>
+
+  
+</head>
+
+<body>
+
+    <!-- Hero Section with Image -->
+    <div class="hero-section">
+        <h1>Welcome to the Meteorite Landings API</h1>
+    </div>
+
+    <!-- Introduction Section -->
+    <div class="section container intro-section">
+        <h2>Introduction</h2>
+        <p>This project visualizes meteorite landings around the world using data obtained from NASA's Meteorite Landings dataset. The data is used to generate multiple visualizations, including line charts tracking meteorite sightings over the years. The visualizations are served through a Flask-based API.</p>
+    </div>
+
+    <!-- Longitude and Latitude Image Section -->
+    <div class="section lat-lon-images">
+        <h3>Longitude and Latitude by Year</h3>
+        <div>
+            <!-- Image 1: Longitude -->
+            <img src="Static/images/Image1.png" alt="Longitude by Year">
+            <!-- Image 2: Latitude -->
+            <img src="Static/images/Image2.png" alt="Latitude by Year">
+        </div>
+        <p>In the historical context, meteorite sightings were sparse, but they became increasingly concentrated in specific regions over time, particularly in the 19th and 20th centuries, which is evident in the longitude and latitude maps above. This trend has likely been influenced by both advancements in technology for observing meteorites and changes in reporting practices.</p>
+    </div>
+
+    <!-- Divider -->
+    <hr>
+
+    >
+
+    <!-- Content Container (Trend and Chart Sections) -->
+    <div class="container content-wrapper">
+        <!-- Trend Description Section for Meteorite Sightings -->
+        <div class="trend-description">
+            <h3>Meteorite Sightings Trend (1900-2021)</h3>
+            <p>Over the course of the 20th and 21st centuries, meteorite sightings and landings have become more frequent. This period (1900–2021) shows clear patterns in meteorite landings, with an increase in the number of recorded meteorites due to improved observational tools and more comprehensive global reporting.</p>
+            <p>The heatmap below illustrates the distribution of meteorite landings by year group and meteorite class. Some key points include:</p>
+            <ul>
+                <li>There was a significant increase in meteorite observations and landings after the 1960s due to advancements in satellite and telescope technology.</li>
+                <li>The meteorite classes that dominate the dataset are typically stony meteorites, such as the L6 and H5 types, which are composed of silicate minerals.</li>
+                <li>In the more recent decades (2000-2021), meteorite sightings have spiked, likely due to the increase in citizen science efforts, media coverage of meteor showers, and more widespread use of technology to detect meteorite events.</li>
+            </ul>
+        </div>
+
+        <!-- Sightings Chart Section -->
+        <div class="chart-container">
+            <h2>Meteorite Landings Heatmap (1900-2021)</h2>
+
+            <!-- Heatmap Image Container -->
+            <div class="filters">
+                <img src="Static/images/meteorite_landings_heatmap_cleaned.png" alt="Heatmap of Meteorite Landings from 1900-2021" style="width: 100%; max-width: 850px;"> <!-- Increased max-width for larger image -->
+            </div>
+  
+    <!-- Divider -->
+    <hr>
+
+    <!-- API Links Section -->
+    <div class="api-links">
+        <p>API Endpoints:</p>
+      
+        <ul>
+            <li><a href=" http://127.0.0.1:5000/api/v1.0/meteorite-landings">/api/v1.0/meteorite-landings</a></li>
+          </ul>
+         
+          <p>First-Record:</p>
+          <ul>
+            <li><a href="http://127.0.0.1:5000/api/v1.0/meteorite-landings/first-rec">/api/v1.0/meteorite-landings/first-rec</a></li>
+          </ul>
+          
+          <p>Unique-Years:</p>
+          <ul>
+            <li><a href="http://127.0.0.1:5000/api/v1.0/meteorite-landings/unique-years">/api/v1.0/meteorite-landings/unique-years</a></li>
+          </ul>
+          
+          <p>Count-All-Years:</p>
+          <ul>
+            <li><a href="http://127.0.0.1:5000/api/v1.0/meteorite-landings/count-all-years">/api/v1.0/meteorite-landings/count-all-years</a></li>
+          </ul>
+          
+          <p>Maximum-Year:</p>
+          <ul>
+            <li><a href="http://127.0.0.1:5000/api/v1.0/meteorite-landings/max-year-count">/api/v1.0/meteorite-landings/max-year-count</a></li>
+          </ul>
+                  
+          <p>Specific Meteor Name:</p> 
+          <ul>
+            <li><a href="http://127.0.0.1:5000/api/v1.0/meteorite-landings/name/<name>">/api/v1.0/meteorite-landings/name/<name></a></li>
+          </ul>
+         
+          <p>Specific Landing Year:</p> 
+          <ul>
+            <li><a href="http://127.0.0.1:5000/api/v1.0/meteorite-landings/year/">/api/v1.0/meteorite-landings/year/</a></li>
+          </ul>
+
+          </html>   
+    </div>
+     <!-- Divider -->
+     <hr>
+   
+
+    <div id="map"></div>
+    <script type="text/javascript" src="static/js/landing_map.js"></script>
+</body>
+
+</html>
