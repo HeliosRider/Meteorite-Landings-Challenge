@@ -135,3 +135,9 @@ svg {
     stroke-width: 2;
 }
 
+/* Set map, body, and html to 100% of the screen size. */
+#map,
+body,
+html {
+  height: 100%;
+}

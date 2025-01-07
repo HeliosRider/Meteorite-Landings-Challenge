@@ -1,4 +1,5 @@
 # import the dependencies
+from flask_cors import CORS
 from pprint import pprint
 import pymongo
 from bson.json_util import dumps
@@ -16,7 +17,7 @@ landings = mydb["landings"]
 
 # Create an app, being sure to pass __name__
 app = Flask(__name__)
-
+CORS(app)  # Enable CORS for all routes
 @app.route("/")
 def home():
     return ("""
