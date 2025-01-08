@@ -57,7 +57,8 @@ hr {
     gap: 30px;
 }
 
-.trend-description, .chart-container {
+.trend-description,
+.chart-container {
     width: 48%;
 }
 
@@ -83,30 +84,6 @@ hr {
 
 .filters select {
     margin-right: 10px;
-}
-
-/* Styling for the API Links Section */
-.api-links {
-    margin-top: 30px;
-    text-align: center;
-}
-
-.api-links ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-.api-links ul li {
-    margin-bottom: 10px;
-}
-
-.api-links a {
-    color: #7a7a7a;
-    text-decoration: none;
-}
-
-.api-links a:hover {
-    color: #fff;
 }
 
 /* Styling for the Sightings Chart Section */
@@ -135,9 +112,50 @@ svg {
     stroke-width: 2;
 }
 
-/* Set map, body, and html to 100% of the screen size. */
-#map,
-body,
-html {
-  height: 100%;
+/* Styling for the Landing Map Section */
+#map {
+    height: 400px;
+    width: 100%;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+/* Styling for the API Links Section */
+.api-links {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.api-links ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.api-links ul li {
+    margin-bottom: 10px;
+}
+
+.api-links a {
+    color: #7a7a7a;
+    text-decoration: none;
+}
+
+.api-links a:hover {
+    color: #fff;
+}
+
+/* New style for the Landing Map Title */
+#landing-map-section h3 {
+    font-size: 2.5rem; /* Increased font size */
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* New style for the paragraph under the map title */
+#landing-map-section p {
+    font-size: 1.2rem; /* Increased font size */
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto; /* Center the paragraph */
+    line-height: 1.6;
 }

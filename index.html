@@ -20,15 +20,13 @@
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
   integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
   crossorigin=""></script>
-
-  
 </head>
 
 <body>
 
     <!-- Hero Section with Image -->
     <div class="hero-section">
-        <h1>Welcome to the Meteorite Landings API</h1>
+        <h1 style="font-size: 3rem;">Welcome to the Meteorite Landings API</h1> <!-- Title kept as is -->
     </div>
 
     <!-- Introduction Section -->
@@ -74,51 +72,70 @@
             <div class="filters">
                 <img src="Static/images/meteorite_landings_heatmap_cleaned.png" alt="Heatmap of Meteorite Landings from 1900-2021" style="width: 100%; max-width: 850px;"> <!-- Increased max-width for larger image -->
             </div>
+        </div>
+    </div>
 
     <!-- Divider -->
     <hr>
-    <!-- API Links Section -->
-    <div class="api-links">
-        <p>API Endpoints:</p>
-      
-        <ul>
-            <li><a href=" http://127.0.0.1:5000/api/v1.0/meteorite-landings">/api/v1.0/meteorite-landings</a></li>
-          </ul>
-         
-          <p>First-Record:</p>
-          <ul>
-            <li><a href="http://127.0.0.1:5000/api/v1.0/meteorite-landings/first-rec">/api/v1.0/meteorite-landings/first-rec</a></li>
-          </ul>
-          
-          <p>Unique-Years:</p>
-          <ul>
-            <li><a href="http://127.0.0.1:5000/api/v1.0/meteorite-landings/unique-years">/api/v1.0/meteorite-landings/unique-years</a></li>
-          </ul>
-          
-          <p>Count-All-Years:</p>
-          <ul>
-            <li><a href="http://127.0.0.1:5000/api/v1.0/meteorite-landings/count-all-years">/api/v1.0/meteorite-landings/count-all-years</a></li>
-          </ul>
-          
-          <p>Maximum-Year:</p>
-          <ul>
-            <li><a href="http://127.0.0.1:5000/api/v1.0/meteorite-landings/max-year-count">/api/v1.0/meteorite-landings/max-year-count</a></li>
-          </ul>
-                  
-          <p>Specific Meteor Name:</p> 
-          <ul>
-            <li><a href="http://127.0.0.1:5000/api/v1.0/meteorite-landings/name/<name>">/api/v1.0/meteorite-landings/name/<name></a></li>
-          </ul>
-         
-          <p>Specific Landing Year:</p> 
-          <ul>
-            <li><a href="http://127.0.0.1:5000/api/v1.0/meteorite-landings/year/">/api/v1.0/meteorite-landings/year/</a></li>
-          </ul>
 
-          </html>       
+    <!-- Landing Map Section -->
+    <div class="section" id="landing-map-section">
+        <h3>Global Meteorite Landings Map</h3>
+        <p>This map shows the geographical distribution of meteorite landings around the world.</p>
+        <p>The map displays the meteor landings of 1979, with a mass greater than 1000g</p>
 
-    <div id="map"></div>
-    <script type="text/javascript" src="static/js/landing_map.js"></script>
+        <!-- Map Container -->
+        <div id="map"></div>
+
+        <!-- Include external script for the map -->
+        <script type="text/javascript" src="static/js/landing_map.js"></script>
+    </div>
+
+        <!-- API Links Section -->
+        <div class="api-links">
+          <p>The following API Endpoints are interactive.<p>
+          </p>API Endpoints titled: Specific Meteor Name and Specific Landing Year require specific user inputs</p>
+     <!-- Divider -->
+     <hr>  
+
+          <p>Meteorite-Landings:</p>
+            <ul>
+                <li><a href=" http://127.0.0.1:5000/api/v1.0/meteorite-landings">/api/v1.0/meteorite-landings</a></li>
+              </ul>
+             
+              <p>First-Record:</p>
+              <ul>
+                <li><a href="http://127.0.0.1:5000/api/v1.0/meteorite-landings/first-record">/api/v1.0/meteorite-landings/first-record</a></li>
+              </ul>
+              
+              <p>Unique-Years:</p>
+              <ul>
+                <li><a href="http://127.0.0.1:5000/api/v1.0/meteorite-landings/unique-years">/api/v1.0/meteorite-landings/unique-years</a></li>
+              </ul>
+              
+              <p>Count-All-Years:</p>
+              <ul>
+                <li><a href="http://127.0.0.1:5000/api/v1.0/meteorite-landings/count-all-years">/api/v1.0/meteorite-landings/count-all-years</a></li>
+              </ul>
+              
+              <p>Maximum-Year:</p>
+              <ul>
+                <li><a href="http://127.0.0.1:5000/api/v1.0/meteorite-landings/max-year-count">/api/v1.0/meteorite-landings/max-year-count</a></li>
+              </ul>
+                      
+              <p>Specific Meteor Name:</p> 
+              <ul>
+                <li><a href="http://127.0.0.1:5000/api/v1.0/meteorite-landings/name/<name>">/api/v1.0/meteorite-landings/name/<name></a></li>
+              </ul>
+             
+              <p>Specific Landing Year:</p> 
+              <ul>
+                <li><a href="http://127.0.0.1:5000/api/v1.0/meteorite-landings/year/">/api/v1.0/meteorite-landings/year/</a></li>
+              </ul>
+    
+              </html>   
+    </div>
+
 </body>
 
 </html>

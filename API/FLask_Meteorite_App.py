@@ -49,7 +49,7 @@ def home():
 
 <p>First-Record:</p>
 <ul>
-  <li><a href="/api/v1.0/meteorite-landings/first-rec">/api/v1.0/meteorite-landings/first-rec</a></li>
+  <li><a href="/api/v1.0/meteorite-landings/first-record">/api/v1.0/meteorite-landings/first-record</a></li>
 </ul>
 
 <p>Unique-Years:</p>
@@ -81,11 +81,27 @@ def home():
 
 # Select all landings
 @app.route("/api/v1.0/meteorite-landings")
-def all_rec():
-    #print all the documents 
-    result=landings.find()
-    #print(f"name {list[result]}")
-    return dumps(result), 200, {'Content-Type': 'application/json'}
+def filter_landings():
+    try:
+        # Example query with multiple filters (year and mass)
+        query = {'year': 1979, 'mass': {'$gt': 1000}}  # Mass greater than 1000g
+        results = landings.find(query)
+        
+        # Convert MongoDB cursor to a list of dictionaries
+        results_list = list(results)
+        
+        if not results_list:
+            return jsonify({"message": "No meteorite landings found with the given criteria."}), 404
+        
+        # Return the filtered results as JSON
+        return Response(
+            json.dumps(results_list, default=json_util.default), 
+            status=200, 
+            mimetype='application/json'
+        )
+    except Exception as e:
+        return jsonify({"message": str(e)}), 500
+
 
 # Define when user select particular document based on name
 @app.route("/api/v1.0/meteorite-landings/name/<name>")
@@ -97,7 +113,7 @@ def search_by_name(name):
    
 
 # Select first recorded landing
-@app.route("/api/v1.0/meteorite-landings/first-rec")
+@app.route("/api/v1.0/meteorite-landings/first-record")
 def first_doc():
     result=landings.find_one()
     #print(f"name {list[result]}")
