@@ -3,10 +3,6 @@
 # Task
 Build an interactive dashboard that demonstrate a thourough knowledge of data visualization.
 
-# Background
-The provided dataset revealed that a small handful of microbial species also called Operational Taxonomic Units (OTU's) in the study
-were present in more than 70% of people, while the rest were relatively rare.
-
 # Data Engineering
   1. JavaScript with D3.js
   2. Plotly library

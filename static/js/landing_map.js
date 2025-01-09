@@ -36,16 +36,6 @@ d3.json("http://127.0.0.1:5000/api/v1.0/meteorite-landings").then(function(data)
     });
     // Add the meteorite layer to the map
     meteorite.addTo(map);
-    // Add a legend to the map for the meteorite information
-    let legend = L.control({ position: "topright" });
-    legend.onAdd = function() {
-        let div = L.DomUtil.create('div', 'info legend');
-        div.innerHTML = `
-            <h4>Meteorite Details</h4>
-            <p><b>Name:</b> Aachen</p>
-            <p><b>Year:</b> 1880</p>
-        `;
-        return div;
-    };
+    
     legend.addTo(map);
 });
